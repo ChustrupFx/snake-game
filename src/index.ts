@@ -1,5 +1,17 @@
 import './assets/style.css';
 
+class Sneak {
+    private x;
+    private y;
+    private size;
+
+    constructor(x, y, size) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+    }
+}
+
 class Canvas {
     private canvasEl: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
@@ -23,11 +35,11 @@ class Canvas {
             this.update();
         }, 100);
     }
+    
 
     private update(): void {
         this.clearCanvas();
         this.drawLines();
-        this.movePlayer(this.player.x + this.player.size, this.player.y);
 
         this.context.fillRect(
             this.player.x,
@@ -41,10 +53,6 @@ class Canvas {
         this.context.clearRect(0, 0, this.width, this.height);
     }
 
-    private movePlayer(x: number, y: number): void {
-        this.player.x = x - (x % this.player.size);
-        this.player.y = y - (y % this.player.size);
-    }
 
     private drawLines() {
         const numberOfLines = this.width / this.player.size;
@@ -56,7 +64,7 @@ class Canvas {
         this.drawVerticalLines(numberOfLines);
     }
 
-    private drawHorizontalLines(numberOfLines) {
+    private drawHorizontalLines(numberOfLines: number): void {
         for (let i = 0; i <= numberOfLines; i++) {
             this.context.beginPath();
             this.context.moveTo(0, i * this.player.size);
@@ -66,7 +74,7 @@ class Canvas {
         }
     }
 
-    private drawVerticalLines(numberOfLines) {
+    private drawVerticalLines(numberOfLines: number): void {
         for (let i = 0; i <= numberOfLines; i++) {
             this.context.beginPath();
             this.context.moveTo(i * this.player.size, 0);
