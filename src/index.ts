@@ -1,14 +1,16 @@
 import './assets/style.css';
 
+
+
 class Sneak {
     private x: number;
     private y: number;
     private size: number;
 
     constructor(x, y, size) {
+        this.size = size;
         this.x = this.fixAxisValue(x);
         this.y = this.fixAxisValue(y);
-        this.size = size;
     }
 
     private movePlayer(x: number, y: number): void {
@@ -39,7 +41,7 @@ class Canvas {
     private width: number = 600;
     private height: number = 600;
 
-    private player = new Sneak(35, 50, 10);
+    private player = new Sneak(50, 50, 10);
 
     constructor(element: HTMLCanvasElement) {
         this.canvasEl = element;
