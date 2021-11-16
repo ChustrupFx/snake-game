@@ -1,13 +1,13 @@
 import './assets/style.css';
 
 class Sneak {
-    private x;
-    private y;
-    private size;
+    private x: number;
+    private y: number;
+    private size: number;
 
     constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
+        this.x = this.fixAxisValue(x);
+        this.y = this.fixAxisValue(y);
         this.size = size;
     }
 
