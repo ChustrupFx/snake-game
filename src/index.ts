@@ -10,6 +10,15 @@ class Sneak {
         this.y = y;
         this.size = size;
     }
+
+    private movePlayer(x: number, y: number): void {
+        this.x = this.fixAxisValue(x);
+        this.y = this.fixAxisValue(y);
+    }
+
+    private fixAxisValue(axisValue: number): number {
+        return axisValue - (axisValue % this.size);
+    }
 }
 
 class Canvas {
@@ -35,7 +44,6 @@ class Canvas {
             this.update();
         }, 100);
     }
-    
 
     private update(): void {
         this.clearCanvas();
@@ -52,7 +60,6 @@ class Canvas {
     private clearCanvas(): void {
         this.context.clearRect(0, 0, this.width, this.height);
     }
-
 
     private drawLines() {
         const numberOfLines = this.width / this.player.size;
