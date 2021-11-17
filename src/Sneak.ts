@@ -1,25 +1,20 @@
 import SneakMovements from './SneakMovements/SneakMovementsEnum';
 import SneakMovement from './SneakMovements/ISneakMovement';
+import Utils from './Utils';
+import SneakBodyPart from './SneakBodyParts/SneakBodyPart';
 
 class Sneak {
-    private x: number;
-    private y: number;
-    private size: number;
+    private head = new SneakBodyPart(50, 50);
     private sneakMovement: SneakMovement = SneakMovements.RIGHT;
 
-    constructor(x: number, y: number, size: number) {
-        this.size = size;
-        this.x = this.fixAxisValue(x);
-        this.y = this.fixAxisValue(y);
+    constructor(x: number, y: number) {
+        this.head.size = 15;
+        this.head.x = Utils.fixAxisValue(x);
+        this.head.y = Utils.fixAxisValue(y);
     }
 
     private movePlayer(x: number, y: number): void {
-        this.x = this.fixAxisValue(x);
-        this.y = this.fixAxisValue(y);
-    }
-
-    private fixAxisValue(axisValue: number): number {
-        return axisValue - (axisValue % this.size);
+        this.head.moveTo(x, y);
     }
 
     public setMovement(sneakMovementType: SneakMovement) {
@@ -27,36 +22,35 @@ class Sneak {
     }
 
     public makeMovement() {
-        console.log(this);
         this.sneakMovement.move(this);
     }
 
     public moveRight(): void {
-        this.movePlayer(this.x + this.size, this.y);
+        this.movePlayer(this.head.x + this.head.size, this.head.y);
     }
 
     public moveLeft(): void {
-        this.movePlayer(this.x - this.size, this.y);
+        this.movePlayer(this.head.x - this.head.size, this.head.y);
     }
 
     public moveUp(): void {
-        this.movePlayer(this.x, this.y - this.size);
+        this.movePlayer(this.head.x, this.head.y - this.head.size);
     }
 
     public moveDown(): void {
-        this.movePlayer(this.x, this.y + this.size);
+        this.movePlayer(this.head.x, this.head.y + this.head.size);
     }
 
     public getX(): number {
-        return this.x;
+        return this.head.x;
     }
 
     public getY(): number {
-        return this.y;
+        return this.head.y;
     }
 
     public getSize(): number {
-        return this.size;
+        return this.head.size;
     }
 }
 

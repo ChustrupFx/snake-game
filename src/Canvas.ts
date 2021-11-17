@@ -8,7 +8,7 @@ class Canvas {
     private width: number = 600;
     private height: number = 600;
 
-    private player = new Sneak(50, 50, 10);
+    private player = new Sneak(50, 50);
     private keyBoardListener = new KeyboardListener();
 
     constructor(element: HTMLCanvasElement) {
