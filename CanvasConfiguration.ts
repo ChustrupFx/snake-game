@@ -1,6 +1,6 @@
 class CanvasConfiguration {
-    public static width: number = 800;
-    public static height: number = 800;
+    public static width: number = 600;
+    public static height: number = 600;
     public static tileSize: number = 15;
 }
 
