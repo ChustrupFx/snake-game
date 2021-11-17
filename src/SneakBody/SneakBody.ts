@@ -16,11 +16,19 @@ class SneakBody implements ISneakBody {
     }
 
     public moveTo(x: number, y: number): void {
-        for (let i = 0; i <= this.tail.length; i++) {
-            if (i === 0) {
+        for (let i = this.tail.length; i >= 0; i--) {
+            console.log(i);
+            if (i === this.tail.length) {
                 this.head.moveTo(x, y);
                 continue;
             }
+
+            if (i === this.tail.length - 1) {
+                this.tail[i].moveTo(this.head.lastX, this.head.lastY);
+                continue;
+            }
+
+            this.tail[i].moveTo(this.tail[i + 1].lastX, this.tail[i + 1].lastY);
         }
     }
 
@@ -33,7 +41,7 @@ class SneakBody implements ISneakBody {
     }
 
     private generateTail(tailLength: number): void {
-        for (let i = 0; i < tailLength; i++) {
+        for (let i = tailLength; i >= 0; i--) {
             const newTailX: number = this.head.x - this.bodyPartSize * (i + 1);
             const newTailY: number = this.head.y;
 
