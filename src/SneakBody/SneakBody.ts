@@ -8,7 +8,7 @@ class SneakBody implements ISneakBody {
     tail: Array<SneakBodyPart>;
 
     constructor(headX: number, headY: number, tailLength: number) {
-        this.head = new SneakBodyPart(headX, headY, 15);
+        this.head = new SneakBodyPart(headX, headY);
         this.tail = [];
         this.bodyPartSize = 15;
 
