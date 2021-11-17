@@ -1,3 +1,4 @@
+import CanvasConfiguration from '../../CanvasConfiguration';
 import Utils from '../Utils';
 import ISneakBodyPart from './ISneakBodyPart';
 
@@ -9,10 +10,10 @@ class SneakBodyPart implements ISneakBodyPart {
     lastX: number;
     lastY: number;
 
-    constructor(x: number, y: number, size: number) {
+    constructor(x: number, y: number) {
         this.x = Utils.fixAxisValue(x);
         this.y = Utils.fixAxisValue(y);
-        this.size = size;
+        this.size = CanvasConfiguration.tileSize;
     }
 
     public moveTo(x: number, y: number): void {
