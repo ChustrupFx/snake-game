@@ -1,4 +1,6 @@
 import Sneak from './Sneak';
+import KeyboardListener from './KeyboardListener';
+import SneakMovements from './SneakMovements/SneakMovementsEnum';
 
 class Canvas {
     private canvasEl: HTMLCanvasElement;
@@ -7,11 +9,14 @@ class Canvas {
     private height: number = 600;
 
     private player = new Sneak(50, 50, 10);
+    private keyBoardListener = new KeyboardListener();
 
     constructor(element: HTMLCanvasElement) {
         this.canvasEl = element;
         this.canvasEl.width = this.width;
         this.canvasEl.height = this.height;
+
+        this.bindKeyboardEvents();
 
         this.context = element.getContext('2d');
 
@@ -24,12 +29,29 @@ class Canvas {
         this.clearCanvas();
         this.drawLines();
 
+        this.player.makeMovement();
+
         this.context.fillRect(
             this.player.getX(),
             this.player.getY(),
             this.player.getSize(),
             this.player.getSize()
         );
+    }
+
+    private bindKeyboardEvents() {
+        this.keyBoardListener.on('KeyW', () => {
+            this.player.setMovement(SneakMovements.UP);
+        });
+        this.keyBoardListener.on('KeyA', () => {
+            this.player.setMovement(SneakMovements.LEFT);
+        });
+        this.keyBoardListener.on('KeyS', () => {
+            this.player.setMovement(SneakMovements.DOWN);
+        });
+        this.keyBoardListener.on('KeyD', () => {
+            this.player.setMovement(SneakMovements.RIGHT);
+        });
     }
 
     private clearCanvas(): void {

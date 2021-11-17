@@ -4,8 +4,8 @@ import SneakMovement from './ISneakMovement';
 class DownMovement implements SneakMovement {
     sneak: Sneak;
 
-    move(): void {
-        this.sneak.moveDown();
+    move(sneak: Sneak): void {
+        sneak.moveDown();
     }
 }
 

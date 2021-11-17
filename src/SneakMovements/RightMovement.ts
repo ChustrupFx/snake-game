@@ -4,8 +4,8 @@ import Sneak from '../Sneak';
 class RightMovement implements SneakMovement {
     sneak: Sneak;
 
-    move() {
-        this.sneak.moveRight();
+    move(sneak: Sneak): void {
+        sneak.moveRight();
     }
 }
 

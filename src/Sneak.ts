@@ -22,11 +22,12 @@ class Sneak {
         return axisValue - (axisValue % this.size);
     }
 
-    private setMovement(sneakMovementType: SneakMovement) {
+    public setMovement(sneakMovementType: SneakMovement) {
         this.sneakMovement = sneakMovementType;
     }
 
     public makeMovement() {
+        console.log(this);
         this.sneakMovement.move(this);
     }
 

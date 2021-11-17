@@ -4,9 +4,10 @@ import SneakMovement from './ISneakMovement';
 class LeftMovement implements SneakMovement {
     sneak: Sneak;
 
-    move(): void {
-        this.sneak.moveLeft();
+    move(sneak: Sneak): void {
+        sneak.moveLeft();
     }
 }
+
 
 export default LeftMovement;
