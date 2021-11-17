@@ -1,13 +1,14 @@
 import SneakMovements from './SneakMovements/SneakMovementsEnum';
 import SneakMovement from './SneakMovements/ISneakMovement';
 import SneakBody from './SneakBody/SneakBody';
+import SneakBodyPart from './SneakBodyParts/SneakBodyPart';
 
 class Sneak {
     private body: SneakBody;
     private sneakMovement: SneakMovement = SneakMovements.RIGHT;
 
-    constructor(x: number, y: number) {
-        this.body = new SneakBody(x, y);
+    constructor(x: number, y: number, tailLenght) {
+        this.body = new SneakBody(x, y, tailLenght);
     }
 
     private movePlayer(x: number, y: number): void {
@@ -60,6 +61,14 @@ class Sneak {
 
     public getSize(): number {
         return this.body.bodyPartSize;
+    }
+
+    public getHead(): SneakBodyPart {
+        return this.body.getHead();
+    }
+
+    public getTail(): Array<SneakBodyPart> {
+        return this.body.getTail();
     }
 }
 

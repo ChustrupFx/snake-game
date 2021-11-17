@@ -1,6 +1,7 @@
 import Sneak from './Sneak';
 import KeyboardListener from './KeyboardListener';
 import SneakMovements from './SneakMovements/SneakMovementsEnum';
+import SneakBodyPart from './SneakBodyParts/SneakBodyPart';
 
 class Canvas {
     private canvasEl: HTMLCanvasElement;
@@ -8,7 +9,7 @@ class Canvas {
     private width: number = 600;
     private height: number = 600;
 
-    private player: Sneak = new Sneak(50, 50);
+    private player: Sneak = new Sneak(200, 200, 5);
     private keyBoardListener: KeyboardListener = new KeyboardListener();
 
     constructor(element: HTMLCanvasElement) {
@@ -36,6 +37,10 @@ class Canvas {
             this.player.getSize(),
             this.player.getSize()
         );
+
+        this.player.getTail().forEach((tail: SneakBodyPart) => {
+            this.context.fillRect(tail.x, tail.y, tail.size, tail.size);
+        });
     }
 
     private bindKeyboardEvents(): void {
