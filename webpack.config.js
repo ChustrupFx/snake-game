@@ -3,11 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
+    devtool: 'inline-source-map',
+
     module: {
         rules: [
             {
                 test: /\.ts$/,
-                use: 'babel-loader',
+                use: ['babel-loader'],
                 exclude: /node_modules/,
             },
             {
@@ -29,4 +31,7 @@ module.exports = {
             template: 'src/index.html',
         }),
     ],
+    stats: {
+        errorDetails: true,
+    },
 };

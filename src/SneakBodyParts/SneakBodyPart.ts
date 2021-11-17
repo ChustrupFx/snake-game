@@ -2,16 +2,17 @@ import Utils from '../Utils';
 import ISneakBodyPart from './ISneakBodyPart';
 
 class SneakBodyPart implements ISneakBodyPart {
-    x: number;
-    y: number;
+    public x: number;
+    public y: number;
+    public size: number;
+
     lastX: number;
     lastY: number;
-    size: number;
 
-    constructor(x: number, y: number) {
+    constructor(x: number, y: number, size: number) {
         this.x = Utils.fixAxisValue(x);
         this.y = Utils.fixAxisValue(y);
-        this.size = 15;
+        this.size = size;
     }
 
     public moveTo(x: number, y: number): void {

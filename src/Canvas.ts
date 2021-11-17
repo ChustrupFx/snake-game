@@ -8,17 +8,16 @@ class Canvas {
     private width: number = 600;
     private height: number = 600;
 
-    private player = new Sneak(50, 50);
-    private keyBoardListener = new KeyboardListener();
+    private player: Sneak = new Sneak(50, 50);
+    private keyBoardListener: KeyboardListener = new KeyboardListener();
 
     constructor(element: HTMLCanvasElement) {
         this.canvasEl = element;
         this.canvasEl.width = this.width;
         this.canvasEl.height = this.height;
+        this.context = element.getContext('2d');
 
         this.bindKeyboardEvents();
-
-        this.context = element.getContext('2d');
 
         setInterval(() => {
             this.update();
@@ -39,7 +38,7 @@ class Canvas {
         );
     }
 
-    private bindKeyboardEvents() {
+    private bindKeyboardEvents(): void {
         this.keyBoardListener.on('KeyW', () => {
             this.player.setMovement(SneakMovements.UP);
         });
