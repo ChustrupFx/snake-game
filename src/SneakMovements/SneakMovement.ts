@@ -1,6 +1,9 @@
 import Sneak from '../Sneak';
 
 interface SneakMovement {
-    constructor(sneak: Sneak): void;
-    execute(): void;
+    sneak: Sneak;
+
+    move(): void;
 }
+
+export default SneakMovement;
