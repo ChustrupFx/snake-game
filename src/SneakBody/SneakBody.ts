@@ -17,7 +17,6 @@ class SneakBody implements ISneakBody {
 
     public moveTo(x: number, y: number): void {
         for (let i = this.tail.length; i >= 0; i--) {
-            console.log(i);
             if (i === this.tail.length) {
                 this.head.moveTo(x, y);
                 continue;

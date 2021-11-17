@@ -2,14 +2,17 @@ import Sneak from './Sneak';
 import KeyboardListener from './KeyboardListener';
 import SneakMovements from './SneakMovements/SneakMovementsEnum';
 import SneakBodyPart from './SneakBodyParts/SneakBodyPart';
+import CanvasConfiguration from '../CanvasConfiguration';
+import Fruit from './Fruit';
 
 class Canvas {
     private canvasEl: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
-    private width: number = 600;
-    private height: number = 600;
+    private width: number = CanvasConfiguration.width;
+    private height: number = CanvasConfiguration.height;
 
     private player: Sneak = new Sneak(200, 200, 5);
+    private fruit: Fruit = new Fruit(50, 50);
     private keyBoardListener: KeyboardListener = new KeyboardListener();
 
     constructor(element: HTMLCanvasElement) {
@@ -36,6 +39,13 @@ class Canvas {
             this.player.getY(),
             this.player.getSize(),
             this.player.getSize()
+        );
+
+        this.context.fillRect(
+            this.fruit.getX(),
+            this.fruit.getY(),
+            CanvasConfiguration.tileSize,
+            CanvasConfiguration.tileSize
         );
 
         this.player.getTail().forEach((tail: SneakBodyPart) => {
