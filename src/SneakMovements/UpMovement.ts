@@ -1,14 +1,12 @@
 import Sneak from '../Sneak';
-import SneakMovement from './SneakMovement';
+import SneakMovement from './ISneakMovement';
 
 class UpMovement implements SneakMovement {
     sneak: Sneak;
-
-    constructor(sneak: Sneak) {
-        this.sneak = sneak;
-    }
 
     move(): void {
         this.sneak.moveUp();
     }
 }
+
+export default UpMovement;

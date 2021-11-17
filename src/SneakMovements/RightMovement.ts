@@ -1,15 +1,12 @@
-import SneakMovement from './SneakMovement';
+import SneakMovement from './ISneakMovement';
 import Sneak from '../Sneak';
 
 class RightMovement implements SneakMovement {
     sneak: Sneak;
 
-    constructor(sneak: Sneak) {
-        this.sneak = sneak;
-    }
-
     move() {
         this.sneak.moveRight();
     }
 }
- 
+
+export default RightMovement;

@@ -1,7 +1,11 @@
+import SneakMovements from './SneakMovements/SneakMovementsEnum';
+import SneakMovement from './SneakMovements/ISneakMovement';
+
 class Sneak {
     private x: number;
     private y: number;
     private size: number;
+    private sneakMovement: SneakMovement = SneakMovements.RIGHT;
 
     constructor(x: number, y: number, size: number) {
         this.size = size;
@@ -18,6 +22,14 @@ class Sneak {
         return axisValue - (axisValue % this.size);
     }
 
+    private setMovement(sneakMovementType: SneakMovement) {
+        this.sneakMovement = sneakMovementType;
+    }
+
+    public makeMovement() {
+        this.sneakMovement.move(this);
+    }
+
     public moveRight(): void {
         this.movePlayer(this.x + this.size, this.y);
     }
@@ -27,11 +39,11 @@ class Sneak {
     }
 
     public moveUp(): void {
-        this.movePlayer(this.x, this.y + this.size);
+        this.movePlayer(this.x, this.y - this.size);
     }
 
     public moveDown(): void {
-        this.movePlayer(this.x, this.y - this.size);
+        this.movePlayer(this.x, this.y + this.size);
     }
 
     public getX(): number {

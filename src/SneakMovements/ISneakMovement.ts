@@ -3,7 +3,7 @@ import Sneak from '../Sneak';
 interface SneakMovement {
     sneak: Sneak;
 
-    move(): void;
+    move(sneak: Sneak): void;
 }
 
 export default SneakMovement;
