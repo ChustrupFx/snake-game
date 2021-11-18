@@ -1,7 +1,7 @@
 import Sneak from '../Sneak';
 
 interface SneakMovement {
-    sneak: Sneak;
+    type: string;
 
     move(sneak: Sneak): void;
 }

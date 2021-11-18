@@ -74,6 +74,10 @@ class Sneak {
     public getTail(): Array<SneakBodyPart> {
         return this.body.getTail();
     }
+
+    public getCurrentMovement(): SneakMovement {
+        return this.sneakMovement;
+    }
 }
 
 export default Sneak;

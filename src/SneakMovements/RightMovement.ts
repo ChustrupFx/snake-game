@@ -2,7 +2,7 @@ import SneakMovement from './ISneakMovement';
 import Sneak from '../Sneak';
 
 class RightMovement implements SneakMovement {
-    sneak: Sneak;
+    type: string = 'RIGHT';
 
     move(sneak: Sneak): void {
         sneak.moveRight();

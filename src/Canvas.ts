@@ -31,7 +31,7 @@ class Canvas {
 
         setInterval(() => {
             this.update();
-        }, 25);
+        }, 100);
     }
 
     private update(): void {
@@ -39,7 +39,6 @@ class Canvas {
         this.drawLines();
 
         this.player.makeMovement();
-
         if (this.colliderDetector.collisionDetected()) {
             this.fruit.respawnInRandomCoords();
             this.player.increaseTailLength();
@@ -51,16 +50,20 @@ class Canvas {
 
     private bindKeyboardEvents(): void {
         this.keyBoardListener.on('KeyW', () => {
-            this.player.setMovement(SneakMovements.UP);
+            if (this.player.getCurrentMovement().type !== 'DOWN')
+                this.player.setMovement(SneakMovements.UP);
         });
         this.keyBoardListener.on('KeyA', () => {
-            this.player.setMovement(SneakMovements.LEFT);
+            if (this.player.getCurrentMovement().type !== 'RIGHT')
+                this.player.setMovement(SneakMovements.LEFT);
         });
         this.keyBoardListener.on('KeyS', () => {
-            this.player.setMovement(SneakMovements.DOWN);
+            if (this.player.getCurrentMovement().type !== 'UP')
+                this.player.setMovement(SneakMovements.DOWN);
         });
         this.keyBoardListener.on('KeyD', () => {
-            this.player.setMovement(SneakMovements.RIGHT);
+            if (this.player.getCurrentMovement().type !== 'LEFT')
+                this.player.setMovement(SneakMovements.RIGHT);
         });
     }
 
