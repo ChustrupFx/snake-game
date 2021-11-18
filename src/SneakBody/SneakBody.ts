@@ -23,7 +23,6 @@ class SneakBody implements ISneakBody {
                 const newHeadY = this.calculateNewHeadX(y);
                 this.head.moveTo(newHeadX, newHeadY);
                 continue;
-                w;
             }
 
             if (i === this.tail.length - 1) {
