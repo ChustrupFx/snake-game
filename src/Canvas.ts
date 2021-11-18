@@ -39,8 +39,12 @@ class Canvas {
         this.drawLines();
 
         this.player.makeMovement();
+<<<<<<< Updated upstream
 
         if (this.colliderDetector.collisionDetected())
+=======
+        if (this.colliderDetector.snakeCollidedWithFruit()) {
+>>>>>>> Stashed changes
             this.fruit.respawnInRandomCoords();
 
         this.canvasRenderer.renderSnake(this.player);
