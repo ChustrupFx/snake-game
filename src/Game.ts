@@ -8,8 +8,8 @@ import ColliderDetector from './ColliderDetector';
 class Game {
     private canvas: Canvas;
 
-    private player: Sneak = new Sneak(200, 200, 5);
-    private fruit: Fruit = new Fruit(50, 50);
+    private player: Sneak = new Sneak();
+    private fruit: Fruit = new Fruit();
     private keyBoardListener: KeyboardListener = new KeyboardListener();
     private colliderDetector: ColliderDetector;
 
@@ -28,7 +28,7 @@ class Game {
         this.player.makeMovement();
 
         if (this.colliderDetector.snakeCollidedWithFruit()) {
-            this.fruit.respawnInRandomCoords();
+            this.fruit.spawnInRandomCoords();
             this.player.increaseTailLength();
         }
 

@@ -2,12 +2,17 @@ import SneakMovements from './SneakMovements/SneakMovementsEnum';
 import SneakMovement from './SneakMovements/ISneakMovement';
 import SneakBody from './SneakBody/SneakBody';
 import SneakBodyPart from './SneakBodyParts/SneakBodyPart';
+import Utils from './Utils';
 
 class Sneak {
     private body: SneakBody;
     private sneakMovement: SneakMovement = SneakMovements.RIGHT;
 
-    constructor(x: number, y: number, tailLenght) {
+    constructor(
+        x: number = Utils.generateRandomXValue(),
+        y: number = Utils.generateRandomYValue(),
+        tailLenght = 3
+    ) {
         this.body = new SneakBody(x, y, tailLenght);
     }
 
@@ -50,6 +55,8 @@ class Sneak {
             this.body.getHead().y + this.body.getHead().size
         );
     }
+
+    public spawnInRandomCoords(): void {}
 
     public increaseTailLength(): void {
         this.body.increaseTailLength();

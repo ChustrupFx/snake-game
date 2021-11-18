@@ -5,20 +5,20 @@ class Fruit {
     private x: number;
     private y: number;
 
-    constructor(x: number, y: number) {
+    constructor(
+        x: number = Utils.generateRandomXValue(),
+        y: number = Utils.generateRandomYValue()
+    ) {
         this.x = Utils.fixAxisValue(x);
         this.y = Utils.fixAxisValue(y);
     }
 
-    public respawnInRandomCoords() {
-        const newX = Math.random() * CanvasConfiguration.width;
-        const newXFixed = Utils.fixAxisValue(newX);
+    public spawnInRandomCoords() {
+        const newX: number = Utils.generateRandomXValue();
+        const newY: number = Utils.generateRandomYValue();
 
-        const newY = Math.random() * CanvasConfiguration.height;
-        const newYFixed = Utils.fixAxisValue(newY);
-
-        this.x = newXFixed;
-        this.y = newYFixed;
+        this.x = newX;
+        this.y = newY;
     }
 
     public getX(): number {
