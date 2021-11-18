@@ -32,7 +32,16 @@ class Game {
             this.player.increaseTailLength();
         }
 
+        if (this.colliderDetector.snakeCollidedWithItself()) {
+            this.reset();
+        }
+
         this.canvas.update();
+    }
+
+    private reset() {
+        this.player.spawnInRandomCoords();
+        this.fruit.spawnInRandomCoords();
     }
 
     private bindKeyboardEvents(): void {

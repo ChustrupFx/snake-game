@@ -71,7 +71,6 @@ class SneakBody implements ISneakBody {
     }
 
     public increaseTailLength(): void {
-        console.log('asd');
         const newTailX: number = this.tail[0].lastX;
         const newTailY: number = this.tail[0].lastY;
         const newTailPart: SneakBodyPart = new SneakBodyPart(

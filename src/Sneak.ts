@@ -7,6 +7,7 @@ import Utils from './Utils';
 class Sneak {
     private body: SneakBody;
     private sneakMovement: SneakMovement = SneakMovements.RIGHT;
+    private initialTailLength: number;
 
     constructor(
         x: number = Utils.generateRandomXValue(),
@@ -14,6 +15,7 @@ class Sneak {
         tailLenght = 3
     ) {
         this.body = new SneakBody(x, y, tailLenght);
+        this.initialTailLength = tailLenght;
     }
 
     private movePlayer(x: number, y: number): void {
@@ -56,7 +58,14 @@ class Sneak {
         );
     }
 
-    public spawnInRandomCoords(): void {}
+    public spawnInRandomCoords(): void {
+        this.body = new SneakBody(
+            Utils.generateRandomXValue(),
+            Utils.generateRandomYValue(),
+            this.initialTailLength
+        );
+        this.setMovement(SneakMovements.RIGHT);
+    }
 
     public increaseTailLength(): void {
         this.body.increaseTailLength();

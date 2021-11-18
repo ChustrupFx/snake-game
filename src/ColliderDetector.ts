@@ -1,5 +1,6 @@
 import Fruit from './Fruit';
 import Snake from './Sneak';
+import SneakBodyPart from './SneakBodyParts/SneakBodyPart';
 
 class ColliderDetector {
     private fruit: Fruit;
@@ -8,6 +9,26 @@ class ColliderDetector {
     constructor(snake: Snake, fruit: Fruit) {
         this.fruit = fruit;
         this.snake = snake;
+    }
+
+    public snakeCollidedWithItself(): boolean {
+        const snakeHead: SneakBodyPart = this.snake.getHead();
+        const snakeTail: Array<SneakBodyPart> = this.snake.getTail();
+
+        for (const tailPart of snakeTail) {
+            if (
+                this.twoPointsCollided(
+                    tailPart.x,
+                    tailPart.y,
+                    snakeHead.x,
+                    snakeHead.y
+                )
+            ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public snakeCollidedWithFruit(): boolean {
