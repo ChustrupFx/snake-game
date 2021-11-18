@@ -10,15 +10,31 @@ class ColliderDetector {
         this.snake = snake;
     }
 
-    public collisionDetected() {
-        return this.isSameXAxisValue() && this.isSameYAxisValue();
+    public snakeCollidedWithFruit(): boolean {
+        return this.twoPointsCollided(
+            this.fruit.getX(),
+            this.fruit.getY(),
+            this.snake.getX(),
+            this.snake.getY()
+        );
     }
 
-    private isSameXAxisValue(): boolean {
+    private twoPointsCollided(
+        x1: number,
+        y1: number,
+        x2: number,
+        y2: number
+    ): boolean {
+        return this.isSameXAxisValue(x1, x2) && this.isSameXAxisValue(y1, y2);
+    }
+
+    private isSameXAxisValue(x1: number, x2: number): boolean {
+        return x1 === x2;
         return this.fruit.getX() === this.snake.getX();
     }
 
-    private isSameYAxisValue(): boolean {
+    private isSameYAxisValue(y1: number, y2: number): boolean {
+        return y1 === y2;
         return this.fruit.getY() === this.snake.getY();
     }
 }
