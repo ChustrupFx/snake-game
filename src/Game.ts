@@ -27,7 +27,7 @@ class Game {
     private update(): void {
         this.player.makeMovement();
 
-        if (this.colliderDetector.collisionDetected()) {
+        if (this.colliderDetector.snakeCollidedWithFruit()) {
             this.fruit.respawnInRandomCoords();
             this.player.increaseTailLength();
         }
