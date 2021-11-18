@@ -39,17 +39,7 @@ class Canvas {
         this.player.makeMovement();
 
         this.canvasRenderer.renderSnake(this.player);
-
-        this.context.fillRect(
-            this.fruit.getX(),
-            this.fruit.getY(),
-            CanvasConfiguration.tileSize,
-            CanvasConfiguration.tileSize
-        );
-
-        this.player.getTail().forEach((tail: SneakBodyPart) => {
-            this.context.fillRect(tail.x, tail.y, tail.size, tail.size);
-        });
+        this.canvasRenderer.renderSquare(this.fruit.getX(), this.fruit.getY());
     }
 
     private bindKeyboardEvents(): void {

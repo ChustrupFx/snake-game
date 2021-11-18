@@ -28,6 +28,14 @@ class CanvasRenderer {
             );
         });
     }
+
+    public renderSquare(
+        x: number,
+        y: number,
+        size = CanvasConfiguration.tileSize
+    ): void {
+        this.context.fillRect(x, y, size, size);
+    }
 }
 
 export default CanvasRenderer;
