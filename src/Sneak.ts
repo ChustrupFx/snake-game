@@ -51,6 +51,10 @@ class Sneak {
         );
     }
 
+    public increaseTailLength(): void {
+        this.body.increaseTailLength();
+    }
+
     public getX(): number {
         return this.body.getHead().x;
     }

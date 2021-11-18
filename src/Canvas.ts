@@ -31,7 +31,7 @@ class Canvas {
 
         setInterval(() => {
             this.update();
-        }, 100);
+        }, 25);
     }
 
     private update(): void {
@@ -40,8 +40,10 @@ class Canvas {
 
         this.player.makeMovement();
 
-        if (this.colliderDetector.collisionDetected())
+        if (this.colliderDetector.collisionDetected()) {
             this.fruit.respawnInRandomCoords();
+            this.player.increaseTailLength();
+        }
 
         this.canvasRenderer.renderSnake(this.player);
         this.canvasRenderer.renderSquare(this.fruit.getX(), this.fruit.getY());

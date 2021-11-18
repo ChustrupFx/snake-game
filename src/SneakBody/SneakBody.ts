@@ -39,16 +39,23 @@ class SneakBody implements ISneakBody {
         return this.tail;
     }
 
+    public increaseTailLength(): void {
+        console.log('asd');
+        const newTailX: number = this.tail[0].lastX;
+        const newTailY: number = this.tail[0].lastY;
+        const newTailPart: SneakBodyPart = new SneakBodyPart(
+            newTailX,
+            newTailY
+        );
+        this.tail.unshift(newTailPart);
+    }
+
     private generateTail(tailLength: number): void {
         for (let i = tailLength; i >= 0; i--) {
             const newTailX: number = this.head.x - this.bodyPartSize * (i + 1);
             const newTailY: number = this.head.y;
 
-            const tail: SneakBodyPart = new SneakBodyPart(
-                newTailX,
-                newTailY,
-                this.bodyPartSize
-            );
+            const tail: SneakBodyPart = new SneakBodyPart(newTailX, newTailY);
 
             this.tail.push(tail);
         }
