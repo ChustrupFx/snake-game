@@ -29,3 +29,5 @@ class CanvasRenderer {
         });
     }
 }
+
+export default CanvasRenderer;
