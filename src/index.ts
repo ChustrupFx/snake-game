@@ -1,5 +1,7 @@
 import './assets/style.css';
 import Canvas from './Canvas';
+import Game from './Game';
 
 const canvasEl: HTMLCanvasElement = document.querySelector('canvas');
-const canvas: Canvas = new Canvas(canvasEl);
+
+const game = new Game(canvasEl);

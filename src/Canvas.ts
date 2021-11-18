@@ -1,4 +1,4 @@
-import Sneak from './Sneak';
+import Snake from './Sneak';
 import KeyboardListener from './KeyboardListener';
 import SneakMovements from './SneakMovements/SneakMovementsEnum';
 import CanvasConfiguration from '../CanvasConfiguration';
@@ -12,59 +12,30 @@ class Canvas {
     private width: number = CanvasConfiguration.width;
     private height: number = CanvasConfiguration.height;
 
-    private player: Sneak = new Sneak(200, 200, 5);
-    private fruit: Fruit = new Fruit(50, 50);
-    private keyBoardListener: KeyboardListener = new KeyboardListener();
+    private snake: Snake;
+    private fruit: Fruit;
+
     private canvasRenderer: CanvasRenderer;
     private colliderDetector: ColliderDetector;
 
-    constructor(element: HTMLCanvasElement) {
+    constructor(element: HTMLCanvasElement, snake: Snake, fruit: Fruit) {
         this.canvasEl = element;
         this.canvasEl.width = this.width;
         this.canvasEl.height = this.height;
         this.context = element.getContext('2d');
 
+        this.snake = snake;
+        this.fruit = fruit;
+
         this.canvasRenderer = new CanvasRenderer(this.context);
-        this.colliderDetector = new ColliderDetector(this.player, this.fruit);
-
-        this.bindKeyboardEvents();
-
-        setInterval(() => {
-            this.update();
-        }, 100);
     }
 
-    private update(): void {
+    public update(): void {
         this.clearCanvas();
         this.drawLines();
 
-        this.player.makeMovement();
-        if (this.colliderDetector.collisionDetected()) {
-            this.fruit.respawnInRandomCoords();
-            this.player.increaseTailLength();
-        }
-
-        this.canvasRenderer.renderSnake(this.player);
+        this.canvasRenderer.renderSnake(this.snake);
         this.canvasRenderer.renderSquare(this.fruit.getX(), this.fruit.getY());
-    }
-
-    private bindKeyboardEvents(): void {
-        this.keyBoardListener.on('KeyW', () => {
-            if (this.player.getCurrentMovement().type !== 'DOWN')
-                this.player.setMovement(SneakMovements.UP);
-        });
-        this.keyBoardListener.on('KeyA', () => {
-            if (this.player.getCurrentMovement().type !== 'RIGHT')
-                this.player.setMovement(SneakMovements.LEFT);
-        });
-        this.keyBoardListener.on('KeyS', () => {
-            if (this.player.getCurrentMovement().type !== 'UP')
-                this.player.setMovement(SneakMovements.DOWN);
-        });
-        this.keyBoardListener.on('KeyD', () => {
-            if (this.player.getCurrentMovement().type !== 'LEFT')
-                this.player.setMovement(SneakMovements.RIGHT);
-        });
     }
 
     private clearCanvas(): void {
@@ -72,7 +43,7 @@ class Canvas {
     }
 
     private drawLines() {
-        const numberOfLines = this.width / this.player.getSize();
+        const numberOfLines = this.width / this.snake.getSize();
 
         this.context.strokeStyle = 'gray';
         this.context.lineWidth = 2;
@@ -84,8 +55,8 @@ class Canvas {
     private drawHorizontalLines(numberOfLines: number): void {
         for (let i = 0; i <= numberOfLines; i++) {
             this.context.beginPath();
-            this.context.moveTo(0, i * this.player.getSize());
-            this.context.lineTo(this.width, i * this.player.getSize());
+            this.context.moveTo(0, i * this.snake.getSize());
+            this.context.lineTo(this.width, i * this.snake.getSize());
             this.context.stroke();
             this.context.closePath();
         }
@@ -94,8 +65,8 @@ class Canvas {
     private drawVerticalLines(numberOfLines: number): void {
         for (let i = 0; i <= numberOfLines; i++) {
             this.context.beginPath();
-            this.context.moveTo(i * this.player.getSize(), 0);
-            this.context.lineTo(i * this.player.getSize(), this.height);
+            this.context.moveTo(i * this.snake.getSize(), 0);
+            this.context.lineTo(i * this.snake.getSize(), this.height);
             this.context.stroke();
             this.context.closePath();
         }

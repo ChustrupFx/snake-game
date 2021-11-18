@@ -1,5 +1,5 @@
 import Fruit from './Fruit';
-import Sneak from './Sneak';
+import Snake from './Sneak';
 
 class ColliderDetector {
     private fruit: Fruit;
