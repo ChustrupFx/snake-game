@@ -1,10 +1,10 @@
 import Sneak from './Sneak';
 import KeyboardListener from './KeyboardListener';
 import SneakMovements from './SneakMovements/SneakMovementsEnum';
-import SneakBodyPart from './SneakBodyParts/SneakBodyPart';
 import CanvasConfiguration from '../CanvasConfiguration';
 import Fruit from './Fruit';
 import CanvasRenderer from './CanvasRederer';
+import ColliderDetector from './ColliderDetector';
 
 class Canvas {
     private canvasEl: HTMLCanvasElement;
@@ -16,6 +16,7 @@ class Canvas {
     private fruit: Fruit = new Fruit(50, 50);
     private keyBoardListener: KeyboardListener = new KeyboardListener();
     private canvasRenderer: CanvasRenderer;
+    private colliderDetector: ColliderDetector;
 
     constructor(element: HTMLCanvasElement) {
         this.canvasEl = element;
@@ -24,6 +25,7 @@ class Canvas {
         this.context = element.getContext('2d');
 
         this.canvasRenderer = new CanvasRenderer(this.context);
+        this.colliderDetector = new ColliderDetector(this.player, this.fruit);
 
         this.bindKeyboardEvents();
 
@@ -37,6 +39,9 @@ class Canvas {
         this.drawLines();
 
         this.player.makeMovement();
+
+        if (this.colliderDetector.collisionDetected())
+            this.fruit.respawnInRandomCoords();
 
         this.canvasRenderer.renderSnake(this.player);
         this.canvasRenderer.renderSquare(this.fruit.getX(), this.fruit.getY());
