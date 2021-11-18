@@ -1,3 +1,4 @@
+import CanvasConfiguration from '../../CanvasConfiguration';
 import SneakBodyPart from '../SneakBodyParts/SneakBodyPart';
 import ISneakBody from './ISneakBody';
 
@@ -18,8 +19,11 @@ class SneakBody implements ISneakBody {
     public moveTo(x: number, y: number): void {
         for (let i = this.tail.length; i >= 0; i--) {
             if (i === this.tail.length) {
-                this.head.moveTo(x, y);
+                const newHeadX = this.calculateNewHeadX(x);
+                const newHeadY = this.calculateNewHeadX(y);
+                this.head.moveTo(newHeadX, newHeadY);
                 continue;
+                w;
             }
 
             if (i === this.tail.length - 1) {
@@ -29,6 +33,34 @@ class SneakBody implements ISneakBody {
 
             this.tail[i].moveTo(this.tail[i + 1].lastX, this.tail[i + 1].lastY);
         }
+    }
+
+    private calculateNewHeadX(x: number): number {
+        var newHeadX: number = x;
+
+        const isXBiggerThanCanvasWidth: boolean =
+            x + this.bodyPartSize > CanvasConfiguration.width;
+        const isXLowerThanZero: boolean = x < 0;
+
+        if (isXBiggerThanCanvasWidth) newHeadX = 0;
+        if (isXLowerThanZero)
+            newHeadX = CanvasConfiguration.width - this.bodyPartSize;
+
+        return newHeadX;
+    }
+
+    private calculateNewHeadY(y: number): number {
+        var newHeadY: number = y;
+
+        const isYBiggerThanCanvasHeight: boolean =
+            y + this.bodyPartSize > CanvasConfiguration.height;
+        const isYLowerThanZero: boolean = y < 0;
+
+        if (isYBiggerThanCanvasHeight) newHeadY = 0;
+        if (isYLowerThanZero)
+            newHeadY = CanvasConfiguration.height - this.bodyPartSize;
+
+        return newHeadY;
     }
 
     public getHead(): SneakBodyPart {
