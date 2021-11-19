@@ -18,7 +18,7 @@ class Sneak {
         this.initialTailLength = tailLenght;
     }
 
-    private movePlayer(x: number, y: number): void {
+    public movePlayer(x: number, y: number): void {
         this.body.moveTo(x, y);
     }
 

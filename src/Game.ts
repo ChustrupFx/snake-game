@@ -24,9 +24,7 @@ class Game {
         }, 100);
     }
 
-    private update(): void {
-        this.player.makeMovement();
-
+    public update(): void {
         if (this.colliderDetector.snakeCollidedWithFruit()) {
             this.fruit.spawnInRandomCoords();
             this.player.increaseTailLength();
@@ -35,7 +33,7 @@ class Game {
         if (this.colliderDetector.snakeCollidedWithItself()) {
             this.reset();
         }
-
+        this.player.makeMovement();
         this.canvas.update();
     }
 
@@ -61,6 +59,14 @@ class Game {
             if (this.player.getCurrentMovement().type !== 'LEFT')
                 this.player.setMovement(SneakMovements.RIGHT);
         });
+    }
+
+    public getSneak(): Sneak {
+        return this.player;
+    }
+
+    public getFruit(): Fruit {
+        return this.fruit;
     }
 }
 

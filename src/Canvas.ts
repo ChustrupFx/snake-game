@@ -22,7 +22,7 @@ class Canvas {
         this.canvasEl = element;
         this.canvasEl.width = this.width;
         this.canvasEl.height = this.height;
-        this.context = element.getContext('2d');
+        this.context = this.canvasEl.getContext('2d');
 
         this.snake = snake;
         this.fruit = fruit;
@@ -39,11 +39,13 @@ class Canvas {
     }
 
     private clearCanvas(): void {
+        console.log(this.context);
         this.context.clearRect(0, 0, this.width, this.height);
     }
 
     private drawLines() {
         const numberOfLines = this.width / this.snake.getSize();
+        
 
         this.context.strokeStyle = 'gray';
         this.context.lineWidth = 2;
